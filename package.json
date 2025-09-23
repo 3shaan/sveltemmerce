@@ -1,0 +1,20 @@
+{
+	"name": "erp",
+	"version": "1.0.0",
+	"description": "E commerce platform built with SvelteKit and Hono with Drizzle ORM and MySQL",
+	"main": "index.js",
+	"scripts": {
+		"start": "pnpm run --parallel start",
+		"dev": "pnpm run --parallel dev",
+		"dev:web": "pnpm run --filter web dev",
+		"dev:server": "pnpm run --filter server dev",
+		"build": "pnpm run --parallel build"
+	},
+	"keywords": ["ecommerce", "sveltekit", "hono", "drizzle-orm", "mysql"],
+	"author": "Eshan Ahamed",
+	"license": "ISC",
+	"devDependencies": {
+		"husky": "^9.1.7"
+	}
+	
+}

@@ -1,0 +1,4 @@
+node_modules
+*.zip
+pnpm-lock.yaml
+apps/backend/audit.log
