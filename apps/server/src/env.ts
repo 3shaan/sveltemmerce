@@ -23,7 +23,7 @@ try {
 } catch (error) {
   const e = error as ZodError;
   console.error("Invalid ENV. ");
-  console.error(e.message);
+  console.error(e.issues);
   process.exit(1);
 }
 
