@@ -8,14 +8,13 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "strict": true,
     "outDir": "./dist",
     "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
   "exclude": ["node_modules"]
-
 }
