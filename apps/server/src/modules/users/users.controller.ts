@@ -2,11 +2,9 @@ import type { AppController } from "@/lib/types.ts";
 
 import type { FindAll } from "./users.route.ts";
 
+import * as userService from "./users.service.ts";
+
 export const findAll: AppController<FindAll> = async (c) => {
-  const data = [{
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-  }];
-  return c.json(data);
+  const users = userService.findAll();
+  return c.json(users);
 };
