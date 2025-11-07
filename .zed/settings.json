@@ -1,0 +1,41 @@
+{
+  "formatter": "language_server",
+  "format_on_save": "on",
+  "languages": {
+    "JavaScript": {
+      "formatter": [
+        {
+          "code_action": "source.fixAll.eslint"
+        }
+      ],
+      "format_on_save": "on"
+    },
+    "TypeScript": {
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_action": "source.fixAll.eslint"
+        }
+      ]
+    },
+    "TSX": {
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_action": "source.fixAll.eslint"
+        }
+      ]
+    }
+  },
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "format": true,
+        "codeActionOnSave": {
+          "enable": true,
+          "mode": "all"
+        }
+      }
+    }
+  }
+}
