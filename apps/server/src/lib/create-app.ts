@@ -6,12 +6,12 @@ import { logger } from "@/middlewares/pino-logger.js";
 
 import type { AppBinding } from "./types.ts";
 
-export function createRouter() {
+export function appModule() {
   return new OpenAPIHono<AppBinding>({ strict: false, defaultHook }); // this will count /error/ as /error.
 }
 
 export function createApp() {
-  const app = createRouter();
+  const app = appModule();
 
   app.use(serveEmojiFavicon("😀"));
 

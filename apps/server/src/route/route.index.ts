@@ -2,9 +2,9 @@ import { createRoute, z } from "@hono/zod-openapi";
 import * as StatusCode from "stoker/http-status-codes";
 import { jsonContent } from "stoker/openapi/helpers";
 
-import { createRouter } from "@/lib/create-app.ts";
+import { appModule } from "@/lib/create-app.ts";
 
-const router = createRouter().openapi(
+const router = appModule().openapi(
   createRoute({
     tags: ["Index"],
     method: "get",
