@@ -1,5 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
+import * as HttpStatusCode from "stoker/http-status-codes";
 import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers";
+import { createErrorSchema } from "stoker/openapi/schemas";
 
 import { createUserSchema, selectUserSchema } from "@/db/schema.ts";
 
@@ -33,10 +35,15 @@ export const createUser = createRoute({
     body: jsonContentRequired(createUserSchema, "create users"),
   },
   responses: {
-    200: jsonContent(
+    [HttpStatusCode.CREATED]: jsonContent(
       selectUserSchema,
       "The created user",
     ),
+    [HttpStatusCode.UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(createUserSchema),
+      "the validation error(s)",
+    ),
+
   },
 },
 );
