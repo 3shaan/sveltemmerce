@@ -1,5 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { jsonContent } from "stoker/openapi/helpers";
+import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers";
+
+import { createUserSchema, selectUserSchema } from "@/db/schema.ts";
 
 const tags = ["Users"];
 
@@ -22,3 +24,20 @@ export const findAll = createRoute({
 );
 
 export type FindAll = typeof findAll;
+
+export const createUser = createRoute({
+  path: "/users",
+  method: "post",
+  tags,
+  request: {
+    body: jsonContentRequired(createUserSchema, "create users"),
+  },
+  responses: {
+    200: jsonContent(
+      selectUserSchema,
+      "The created user",
+    ),
+  },
+},
+);
+export type CreateUser = typeof createUser;
