@@ -1,7 +1,6 @@
+import db from "@/db/index.ts";
+
 export function findAll() {
-  return [{
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-  }];
+  const users = db.query.usersTable.findMany();
+  return users;
 }

@@ -5,6 +5,6 @@ import type { FindAll } from "./users.route.ts";
 import * as userService from "./users.service.ts";
 
 export const findAll: AppController<FindAll> = async (c) => {
-  const users = userService.findAll();
+  const users = await userService.findAll();
   return c.json(users);
 };
