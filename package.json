@@ -8,7 +8,9 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "start": "turbo run start"
+    "start": "turbo run start",
+    "db:generate": "turbo run db:generate --filter=api",
+    "db:migrate": "turbo run db:migrate --filter=api"
   },
   "keywords": [
     "ecommerce",

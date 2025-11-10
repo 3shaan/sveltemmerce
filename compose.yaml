@@ -1,18 +1,25 @@
 services:
   server:
     build:
-      context: apps/server
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: apps/api/Dockerfile
+    command: sh scripts/wait-until-db-ready.sh
 
     environment:
       NODE_ENV: production
       PORT: 3000
       LOG_LEVEL: info
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/sveltemmerce
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
 
     ports:
       - "3000:3000"
     restart: always
+    volumes:
+      - ./apps/api:/app/apps/api
+      - ./node_modules:/app/node_modules
     depends_on:
       - postgres
 

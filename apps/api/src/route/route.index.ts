@@ -16,7 +16,7 @@ const router = appModule().openapi(
     },
   }),
   (ctx) => {
-    return ctx.json({ message: "Welcome to Sveltemmerce!" });
+    return ctx.json({ message: "Welcome to Sveltemmerce 33!" });
   },
 );
 

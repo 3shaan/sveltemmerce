@@ -33,12 +33,23 @@
       "outputs": [
         "coverage/**"
       ]
+    },
+    "db:generate": {
+      "cache": false,
+      "dependsOn": []
+    },
+    "db:migrate": {
+      "cache": false,
+      "dependsOn": []
     }
   },
   "globalEnv": [
     "NODE_ENV",
     "PORT",
     "LOG_LEVEL",
-    "DATABASE_URL"
+    "DATABASE_URL",
+    "DB_HOST",
+    "DB_PORT",
+    "DB_USER"
   ]
 }

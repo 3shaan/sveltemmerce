@@ -7,7 +7,9 @@
     "build": "npx rollup --config",
     "start": "node dist/index.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "db:generate": "drizzle-kit generate --config=./drizzle.config.js",
+    "db:migrate": "drizzle-kit migrate --config=./drizzle.config.js"
   },
   "dependencies": {
     "@asteasolutions/zod-to-openapi": "^8.1.0",
