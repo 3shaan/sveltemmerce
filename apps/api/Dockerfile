@@ -1,35 +1,40 @@
-FROM node:22-alpine
-
+# ---------
+#  build stage
+# ------
+FROM node:22-alpine AS build
 WORKDIR /usr/src/app
-
-# Enable pnpm
-RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
-
-# Copy root packages
-COPY pnpm-lock.yaml ./
-COPY package.json ./
-COPY pnpm-workspace.yaml ./
-
-#copy the api package.json
+RUN corepack enable && corepack prepare pnpm@10.20.0 --activate
+COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
 COPY apps/api/package.json ./apps/api/package.json
-
-# Install only server dependencies (including dev for build)
-RUN pnpm install
-
-# Copy service source code
+RUN pnpm install --frozen-lockfile
 COPY . .
-
-# Build the server
 RUN pnpm build --filter=api
 
-# Clean dev dependencies for production
-# RUN pnpm prune --prod
+# ---------
+#  production stage
+# ------
+FROM node:22-alpine AS production
+WORKDIR /usr/src/app
+RUN corepack enable && corepack prepare pnpm@10.20.0 --activate
+COPY --from=builder /usr/src/app/pnpm-lock.yaml ./
+COPY --from=builder /usr/src/app/package.json ./
+COPY --from=builder /usr/src/app/pnpm-workspace.yaml ./
+COPY --from=builder /usr/src/app/node_modules ./node_modules
 
+COPY --from=builder /usr/src/app/apps/api/dist ./apps/api/dist
 EXPOSE 3000
+CMD ["pnpm", "start", "--filter=api"]
 
-# Run the server
-# CMD ["node", "dist/index.js"]
-# RUN pnpm db:migrate
 
-# CMD ["node", "dist/index.js"]
-CMD ["sh", "-c", "pnpm db:migrate && node apps/api/dist/index.js"]
+# ---------
+#  development stage
+# ------
+FROM node:22-alpine AS development
+WORKDIR /usr/src/app
+RUN corepack enable && corepack prepare pnpm@10.20.0 --activate
+COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
+COPY apps/api/package.json ./apps/api/package.json
+RUN pnpm install --frozen-lockfile
+COPY . .
+EXPOSE 3000
+CMD ["pnpm", "dev", "--filter=api"]
