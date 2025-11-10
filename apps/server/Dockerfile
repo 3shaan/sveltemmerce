@@ -18,9 +18,11 @@ COPY . .
 RUN pnpm build
 
 # Clean dev dependencies for production
-RUN pnpm prune --prod
+# RUN pnpm prune --prod
 
 EXPOSE 3000
 
 # Run the server
-CMD ["node", "dist/index.js"]
+# CMD ["node", "dist/index.js"]
+
+CMD ["sh", "-c", "pnpm exec drizzle-kit migrate && node dist/index.js"]
