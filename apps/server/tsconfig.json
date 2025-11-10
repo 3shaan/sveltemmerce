@@ -1,15 +1,20 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "module": "NodeNext",
+    "module": "Preserve",
+    "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     },
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "strict": true,
+    "rootDir": "./src",
     "outDir": "./dist",
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
@@ -18,5 +23,14 @@
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    ".gitignore",
+    "eslint.config.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "include": [
+    "."
+  ]
 }
