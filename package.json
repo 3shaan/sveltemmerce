@@ -4,15 +4,11 @@
   "description": "E commerce platform built with SvelteKit and Hono with Drizzle ORM and MySQL",
   "main": "index.js",
   "scripts": {
-    "start": "pnpm run --parallel start",
-    "start:web": "pnpm run --filter web start",
-    "start:server": "pnpm run --filter server start",
-    "dev": "pnpm run --parallel dev",
-    "dev:web": "pnpm run --filter web dev",
-    "dev:server": "pnpm run --filter server dev",
-    "build": "pnpm build",
-    "build:web": "pnpm build --filter web ",
-    "build:server": "pnpm build --filter server "
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "start": "turbo run start"
   },
   "keywords": [
     "ecommerce",
@@ -24,6 +20,8 @@
   "author": "Eshan Ahamed",
   "license": "ISC",
   "devDependencies": {
-    "husky": "^9.1.7"
-  }
+    "husky": "^9.1.7",
+    "turbo": "^2.6.0"
+  },
+  "packageManager": "pnpm@10.20.0"
 }

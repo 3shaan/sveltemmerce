@@ -10,6 +10,5 @@ export default {
   plugins: [
     json(),
     typescript({ tsconfig: "./tsconfig.json" }), // Must be included
-
   ],
 };
